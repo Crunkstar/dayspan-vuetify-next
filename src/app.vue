@@ -11,7 +11,7 @@
       </template>
 
       <template slot="menuRight">
-        <v-btn icon large href="https://github.com/ClickerMonkey/dayspan-vuetify" target="_blank">
+        <v-btn icon large href="https://github.com/Crunkstar/dayspan-vuetify-next" target="_blank">
           <v-avatar size="32px" tile>
             <img src="https://simpleicons.org/icons/github.svg" alt="Github">
           </v-avatar>

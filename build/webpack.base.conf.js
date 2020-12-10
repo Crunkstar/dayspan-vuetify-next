@@ -10,7 +10,7 @@ function resolve (dir) {
 module.exports = {
   entry: {
     docs: './src/docs.js',
-    ['dayspan-vuetify']: './src/lib.js'
+    ['dayspan-vuetify-next']: './src/lib.js'
   },
   output: {
     path: config.build.assetsRoot,
