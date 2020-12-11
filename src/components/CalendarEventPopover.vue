@@ -14,37 +14,38 @@
        </v-icon>
      </v-toolbar-title>
 
-     <v-btn
-       v-if="allowEdit"
-       color="secondary"
-       small absolute bottom left fab icon
-       @click="edit">
-       <v-icon>edit</v-icon>
-     </v-btn>
+    <v-btn
+      v-if="allowEdit"
+      color="secondary"
+      small absolute bottom left fab icon
+      @click="edit">
+      <v-icon>edit</v-icon>
+    </v-btn>
 
-     <slot name="eventPopoverToolbarLeft" v-bind="slotData"></slot>
+    <slot name="eventPopoverToolbarLeft" v-bind="slotData"></slot>
 
-     <v-spacer></v-spacer>
+    <v-spacer></v-spacer>
 
-     <slot name="eventPopoverToolbarRight" v-bind="slotData"></slot>
+    <slot name="eventPopoverToolbarRight" v-bind="slotData"></slot>
 
-     <slot name="eventPopoverToolbarActions" v-bind="slotData">
+    <slot name="eventPopoverToolbarActions" v-bind="slotData">
 
-       <v-tooltip bottom v-if="!isReadOnly">
+      <v-tooltip bottom v-if="!isReadOnly">
+        <template #activator="{on}">
+          <ds-schedule-actions
+            v-bind="{$scopedSlots}"
+            v-on="{...$listeners, ...on}"
+            :schedule="calendarEvent.schedule"
+            :calendar-event="calendarEvent"
+            :calendar="calendar"
+          >
 
-         <ds-schedule-actions
-          slot="activator"
-          v-bind="{$scopedSlots}"
-          v-on="$listeners"
-          :schedule="calendarEvent.schedule"
-          :calendar-event="calendarEvent"
-          :calendar="calendar">
+            <v-btn icon :style="styleButton">
+              <v-icon>more_vert</v-icon>
+            </v-btn>
 
-          <v-btn icon :style="styleButton">
-            <v-icon>more_vert</v-icon>
-          </v-btn>
-
-        </ds-schedule-actions>
+          </ds-schedule-actions>
+        </template>
 
         <span>{{ labels.options }}</span>
 
@@ -67,80 +68,80 @@
 
      <v-list dense>
 
-       <v-list-tile>
-         <v-list-tile-avatar>
+       <v-list-item>
+         <v-list-item-avatar>
            <v-icon>access_time</v-icon>
-         </v-list-tile-avatar>
-         <v-list-tile-content>
+         </v-list-item-avatar>
+         <v-list-item-content>
            <slot name="eventPopoverOccurs" v-bind="slotData">
-             <v-list-tile-title>{{ startDate }}</v-list-tile-title>
-             <v-list-tile-sub-title>{{ occurs }}</v-list-tile-sub-title>
+             <v-list-item-title>{{ startDate }}</v-list-item-title>
+             <v-list-item-subtitle>{{ occurs }}</v-list-item-subtitle>
            </slot>
-         </v-list-tile-content>
-       </v-list-tile>
+         </v-list-item-content>
+       </v-list-item>
 
-       <v-list-tile v-if="details.location">
-         <v-list-tile-avatar>
+       <v-list-item v-if="details.location">
+         <v-list-item-avatar>
            <v-icon>location_on</v-icon>
-         </v-list-tile-avatar>
-         <v-list-tile-content>
+         </v-list-item-avatar>
+         <v-list-item-content>
            <slot name="eventPopoverLocation" v-bind="slotData">
-             <v-list-tile-title>
+             <v-list-item-title>
                <span v-html="details.location"></span>
-             </v-list-tile-title>
+             </v-list-item-title>
            </slot>
-         </v-list-tile-content>
-       </v-list-tile>
+         </v-list-item-content>
+       </v-list-item>
 
-       <v-list-tile v-if="details.description">
-         <v-list-tile-avatar>
+       <v-list-item v-if="details.description">
+         <v-list-item-avatar>
            <v-icon>subject</v-icon>
-         </v-list-tile-avatar>
-         <v-list-tile-content>
+         </v-list-item-avatar>
+         <v-list-item-content>
            <slot name="eventPopoverDescription" v-bind="slotData">
-             <v-list-tile-title>
+             <v-list-item-title>
                <span v-html="details.description"></span>
-             </v-list-tile-title>
+             </v-list-item-title>
            </slot>
-         </v-list-tile-content>
-       </v-list-tile>
+         </v-list-item-content>
+       </v-list-item>
 
-       <v-list-tile v-if="details.notify">
-         <v-list-tile-avatar>
+       <v-list-item v-if="details.notify">
+         <v-list-item-avatar>
            <v-icon>notifications</v-icon>
-         </v-list-tile-avatar>
-         <v-list-tile-content>
+         </v-list-item-avatar>
+         <v-list-item-content>
            <slot name="eventPopoverNotifications" v-bind="slotData">
-             <v-list-tile-title>
+             <v-list-item-title>
                <span v-html="details.notify"></span>
-             </v-list-tile-title>
+             </v-list-item-title>
            </slot>
-         </v-list-tile-content>
-       </v-list-tile>
+         </v-list-item-content>
+       </v-list-item>
 
-       <v-list-tile v-if="details.calendar">
-         <v-list-tile-avatar>
+       <v-list-item v-if="details.calendar">
+         <v-list-item-avatar>
            <v-icon>event</v-icon>
-         </v-list-tile-avatar>
-         <v-list-tile-content>
+         </v-list-item-avatar>
+         <v-list-item-content>
            <slot name="eventPopoverCalendar" v-bind="slotData">
-             <v-list-tile-title>
+             <v-list-item-title>
                <span v-html="details.calendar"></span>
-             </v-list-tile-title>
+             </v-list-item-title>
            </slot>
-         </v-list-tile-content>
-       </v-list-tile>
+         </v-list-item-content>
+       </v-list-item>
 
-       <v-list-tile v-if="hasBusy">
-         <v-list-tile-avatar>
+       <v-list-item v-if="hasBusy">
+         <v-list-item-avatar>
            <v-icon>work</v-icon>
-         </v-list-tile-avatar>
-         <v-list-tile-content>
+         </v-list-item-avatar>
+         <v-list-item-content>
            <slot name="eventPopoverBusy" v-bind="slotData">
-             <v-list-tile-title>{{ busyness }}</v-list-tile-title>
+             <v-list-item-title>{{ busyness }}</v-list-item-title>
            </slot>
-         </v-list-tile-content>
-       </v-list-tile>
+         </v-list-item-content>
+       </v-list-item>
 
      </v-list>
 

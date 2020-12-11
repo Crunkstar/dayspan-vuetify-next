@@ -6,6 +6,7 @@ import { default as Icons } from './icons';
 import { default as Locales, defaultLocale } from './locales'
 import { dsMerge, dsMergeLocale } from './functions';
 import Vue from 'vue';
+import vuetify from './vuetify';
 
 const LOCALE_ENTRY = 0;
 
@@ -13,7 +14,7 @@ export default {
 
   data:
   {
-    version:          '0.3.0',
+    version:          '0.4.1',
 
     readOnly:         false,
 
@@ -122,12 +123,12 @@ export default {
   {
     fullscreenPopovers()
     {
-      return this.$vuetify.breakpoint.xs;
+      return vuetify.framework.breakpoint.xs;
     },
 
     fullscreenDialogs()
     {
-      return this.$vuetify.breakpoint.xs;
+      return vuetify.framework.breakpoint.xs;
     }
   },
 
@@ -362,7 +363,7 @@ export default {
         when += schedule.describeArray( schedule.times, x => x.format( formats.time ) );
       }
 
-      if (schedule.duration !== 1 && this.$vuetify.breakpoint.smAndUp)
+      if (schedule.duration !== 1 && vuetify.framework.breakpoint.smAndUp)
       {
         when += ' (' + this.getEventDuration( schedule, labels ) + ')';
       }

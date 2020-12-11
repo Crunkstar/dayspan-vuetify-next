@@ -39,22 +39,24 @@
         v-model="menu"
         v-bind="popoverProps">
 
-        <div slot="activator" class="ds-agenda-activator">
+        <template #activator="{on}">
+          <div class="ds-agenda-activator" v-on="on">
 
-          <slot name="agendaEventDetails" v-bind="slotData">
+            <slot name="agendaEventDetails" v-bind="slotData">
 
-            <v-icon class="ds-details-icon"
-              v-if="details.icon" size="16">
-              {{ details.icon }}
-            </v-icon>
+              <v-icon class="ds-details-icon"
+                v-if="details.icon" size="16">
+                {{ details.icon }}
+              </v-icon>
 
-            <strong v-html="details.title"></strong>
+              <strong v-html="details.title"></strong>
 
-            <span class="ds-details-description" v-html="details.description"></span>
+              <span class="ds-details-description" v-html="details.description"></span>
 
-          </slot>
+            </slot>
 
-        </div>
+          </div>
+        </template>
 
         <slot name="eventPopover" v-bind="{readOnly, calendarEvent, calendar, edit, details, close}"></slot>
 

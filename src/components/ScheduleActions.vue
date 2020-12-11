@@ -2,37 +2,37 @@
 
   <v-menu bottom left>
 
-    <template slot="activator">
-      <slot></slot>
+    <template #activator="{on}">
+      <slot v-on="on"></slot>
     </template>
 
     <v-list>
 
-      <v-list-tile @click="remove" v-if="canRemove">
-        <v-list-tile-title v-html="labels.remove"></v-list-tile-title>
-      </v-list-tile>
+      <v-list-item @click="remove" v-if="canRemove">
+        <v-list-item-title v-html="labels.remove"></v-list-item-title>
+      </v-list-item>
 
-      <v-list-tile @click="exclude" v-if="canExclude">
-        <v-list-tile-title v-html="labels.exclude"></v-list-tile-title>
-      </v-list-tile>
+      <v-list-item @click="exclude" v-if="canExclude">
+        <v-list-item-title v-html="labels.exclude"></v-list-item-title>
+      </v-list-item>
 
-      <v-list-tile @click="cancel" v-if="canCancel">
-        <v-list-tile-title v-html="labels.cancel"></v-list-tile-title>
-      </v-list-tile>
+      <v-list-item @click="cancel" v-if="canCancel">
+        <v-list-item-title v-html="labels.cancel"></v-list-item-title>
+      </v-list-item>
 
-      <v-list-tile @click="uncancel" v-if="canUncancel">
-        <v-list-tile-title v-html="labels.uncancel"></v-list-tile-title>
-      </v-list-tile>
+      <v-list-item @click="uncancel" v-if="canUncancel">
+        <v-list-item-title v-html="labels.uncancel"></v-list-item-title>
+      </v-list-item>
 
-      <v-list-tile @click="setStart" v-if="canSetStart">
-        <v-list-tile-title v-html="labels.setStart"></v-list-tile-title>
-      </v-list-tile>
+      <v-list-item @click="setStart" v-if="canSetStart">
+        <v-list-item-title v-html="labels.setStart"></v-list-item-title>
+      </v-list-item>
 
-      <v-list-tile @click="setEnd" v-if="canSetEnd">
-        <v-list-tile-title v-html="labels.setEnd"></v-list-tile-title>
-      </v-list-tile>
+      <v-list-item @click="setEnd" v-if="canSetEnd">
+        <v-list-item-title v-html="labels.setEnd"></v-list-item-title>
+      </v-list-item>
 
-      <v-list-tile @click="moveStart" v-if="canMove">
+      <v-list-item @click="moveStart" v-if="canMove">
         <v-menu
           lazy offset-y full-width
           transition="scale-transition"
@@ -42,16 +42,18 @@
           :close-on-content-click="false"
           :nudge-right="40">
 
-          <v-list-tile-title slot="activator">
-            <span v-html="labels.move"></span>
-          </v-list-tile-title>
+          <template #activator="{on}">
+            <v-list-item-title v-onf="on">
+              <span v-html="labels.move"></span>
+            </v-list-item-title>
+          </template>
 
           <v-date-picker no-title scrollable
             v-if="movingDate"
             v-model="targetDate">
             <v-spacer></v-spacer>
-            <v-btn flat color="primary" @click="movingDate = false">{{ labels.pickerCancel }}</v-btn>
-            <v-btn flat color="primary" @click="moveEnd">{{ labels.pickerOk }}</v-btn>
+            <v-btn text color="primary" @click="movingDate = false">{{ labels.pickerCancel }}</v-btn>
+            <v-btn text color="primary" @click="moveEnd">{{ labels.pickerOk }}</v-btn>
           </v-date-picker>
 
           <v-time-picker no-title scrollable
@@ -63,9 +65,9 @@
           </v-time-picker>
 
         </v-menu>
-      </v-list-tile>
+      </v-list-item>
 
-      <v-list-tile @click="includeStart" v-if="canInclude">
+      <v-list-item @click="includeStart" v-if="canInclude">
         <v-menu
           lazy offset-y full-width
           transition="scale-transition"
@@ -75,9 +77,11 @@
           :close-on-content-click="false"
           :nudge-right="40">
 
-          <v-list-tile-title slot="activator">
-            <span v-html="labels.include"></span>
-          </v-list-tile-title>
+          <template #activator="{on}">
+            <v-list-item-title v-on="on">
+              <span v-html="labels.include"></span>
+            </v-list-item-title>
+          </template>
 
           <v-date-picker no-title scrollable
             v-if="includingDate"
@@ -96,7 +100,7 @@
           </v-time-picker>
 
         </v-menu>
-      </v-list-tile>
+      </v-list-item>
 
       <slot name="scheduleActionsAdditional" v-bind="{schedule, calendarEvent, calendar}"></slot>
 

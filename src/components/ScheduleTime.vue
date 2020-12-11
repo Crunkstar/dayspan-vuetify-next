@@ -17,10 +17,16 @@
 
       <v-tooltip bottom v-if="showRemove && !isReadOnly">
 
-        <v-btn slot="activator" icon
-          class="action-remove"
-          :color="colors.remove"
-          @click="removeTime"><v-icon>{{ icons.remove }}</v-icon></v-btn>
+        <template #activator="{on}">
+          <v-btn icon
+            class="action-remove"
+            :color="colors.remove"
+            @click="removeTime"
+            v-on="on"
+          >
+            <v-icon>{{ icons.remove }}</v-icon>
+          </v-btn>
+        </template>
 
         <span v-html="labels.remove"></span>
 
@@ -28,10 +34,15 @@
 
       <v-tooltip bottom v-if="showAdd && !isReadOnly">
 
-        <v-btn slot="activator" icon
-          class="action-add"
-          :color="colors.add"
-          @click="addTime"><v-icon>{{ icons.add }}</v-icon></v-btn>
+        <template #activator="{on}">
+          <v-btn icon
+            class="action-add"
+            :color="colors.add"
+            @click="addTime"
+          >
+            <v-icon>{{ icons.add }}</v-icon>
+          </v-btn>
+        </template>
 
         <span v-html="labels.add"></span>
 

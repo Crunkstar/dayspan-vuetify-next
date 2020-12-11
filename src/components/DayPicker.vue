@@ -9,23 +9,29 @@
       </div>
 
       <v-tooltip bottom>
-
-        <v-btn slot="activator" small icon depressed
-          @click="prev"
-          class="ds-light-forecolor ma-0">
-          <v-icon>keyboard_arrow_left</v-icon>
-        </v-btn>
+        <template #activator="{on}">
+          <v-btn small icon depressed
+            @click="prev"
+            class="ds-light-forecolor ma-0"
+            v-on="on"
+          >
+            <v-icon>keyboard_arrow_left</v-icon>
+          </v-btn>
+        </template>
         <span>{{ labels.prevMonth }}</span>
 
       </v-tooltip>
 
       <v-tooltip bottom>
-
-        <v-btn slot="activator" small icon depressed
-          class="ds-light-forecolor ma-0"
-          @click="next">
-          <v-icon>keyboard_arrow_right</v-icon>
-        </v-btn>
+        <template #activator="{on}">
+          <v-btn small icon depressed
+            class="ds-light-forecolor ma-0"
+            @click="next"
+            v-on="on"
+          >
+            <v-icon>keyboard_arrow_right</v-icon>
+          </v-btn>
+        </template>
         <span>{{ labels.nextMonth }}</span>
 
       </v-tooltip>
@@ -36,7 +42,9 @@
       <div class="ds-weekday" v-for="weekday in weekdays" :key="weekday">
 
         <v-tooltip bottom>
-          <span slot="activator">{{ weekday.charAt(0) }}</span>
+          <template #activator="{on}">
+            <span v-on="on">{{ weekday.charAt(0) }}</span>
+          </template>>
           <span>{{ weekday }}</span>
         </v-tooltip>
 

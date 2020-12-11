@@ -1,47 +1,50 @@
 <template>
-
-  <v-menu
+  <div
     class="ds-calendar-event"
-    :content-class="contentClass"
-    :disabled="!hasPopover"
     :style="style"
-    v-model="menu"
-    v-bind="popoverProps">
+  >
+    <v-menu
+      :content-class="contentClass"
+      :disabled="!hasPopover"
+      v-model="menu"
+      v-bind="popoverProps">
 
-    <div
-      class="ds-calendar-event-span"
-      slot="activator"
-      @click="editCheck"
-      @mouseenter="mouseEnterEvent"
-      @mouseleave="mouseLeaveEvent"
-      @mousedown="mouseDownEvent"
-      @mouseup="mouseUpEvent">
+      <template #activator="{on}">
+        <div
+          class="ds-calendar-event-span"
+          v-on="on"
+          @click="editCheck"
+          @mouseenter="mouseEnterEvent"
+          @mouseleave="mouseLeaveEvent"
+          @mousedown="mouseDownEvent"
+          @mouseup="mouseUpEvent">
 
-      <span v-if="showName">
-        <slot name="eventTimeTitle" v-bind="{calendarEvent, details}">
+          <span v-if="showName">
+            <slot name="eventTimeTitle" v-bind="{calendarEvent, details}">
 
-          <v-icon class="ds-ev-icon"
-            v-if="hasIcon"
-            size="14"
-            :style="{color: details.forecolor}">
-            {{ details.icon }}
-          </v-icon>
-          <strong class="ds-ev-title">{{ details.title }}</strong>
-          <span class="ds-ev-description">{{ details.description }}</span>
+              <v-icon class="ds-ev-icon"
+                v-if="hasIcon"
+                size="14"
+                :style="{color: details.forecolor}">
+                {{ details.icon }}
+              </v-icon>
+              <strong class="ds-ev-title">{{ details.title }}</strong>
+              <span class="ds-ev-description">{{ details.description }}</span>
 
-        </slot>
-      </span>
+            </slot>
+          </span>
 
-      <span v-else>
-        <slot name="eventTimeEmpty" v-bind="{calendarEvent, details}"></slot>
-      </span>
+          <span v-else>
+            <slot name="eventTimeEmpty" v-bind="{calendarEvent, details}"></slot>
+          </span>
 
-    </div>
+        </div>
+      </template>
 
-    <slot name="eventPopover" v-bind="{calendarEvent, calendar, edit, details, close}"></slot>
+      <slot name="eventPopover" v-bind="{calendarEvent, calendar, edit, details, close}"></slot>
 
-  </v-menu>
-
+    </v-menu>
+  </div>
 </template>
 
 <script>

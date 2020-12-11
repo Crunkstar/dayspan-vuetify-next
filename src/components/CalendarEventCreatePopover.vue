@@ -33,7 +33,7 @@
 
        <v-btn
          class="ds-create-popover-save"
-         flat
+         text
          :disabled="!isValid"
          :style="styleText"
          @click="save">
@@ -64,23 +64,23 @@
 
      <v-list>
 
-       <v-list-tile>
-         <v-list-tile-avatar>
+       <v-list-item>
+         <v-list-item-avatar>
            <v-icon>access_time</v-icon>
-         </v-list-tile-avatar>
-         <v-list-tile-content>
+         </v-list-item-avatar>
+         <v-list-item-content>
            <slot name="eventCreatePopoverOccurs" v-bind="slotData">
-             <v-list-tile-title>{{ startDate }}</v-list-tile-title>
-             <v-list-tile-sub-title>{{ occurs }}</v-list-tile-sub-title>
+             <v-list-item-title>{{ startDate }}</v-list-item-title>
+             <v-list-item-subtitle>{{ occurs }}</v-list-item-subtitle>
            </slot>
-         </v-list-tile-content>
-       </v-list-tile>
+         </v-list-item-content>
+       </v-list-item>
 
-       <v-list-tile v-if="prompts.location && $dayspan.supports.location">
-         <v-list-tile-avatar>
+       <v-list-item v-if="prompts.location && $dayspan.supports.location">
+         <v-list-item-avatar>
            <v-icon>location_on</v-icon>
-         </v-list-tile-avatar>
-         <v-list-tile-content>
+         </v-list-item-avatar>
+         <v-list-item-content>
            <slot name="eventCreatePopoverLocation" v-bind="slotData">
 
              <v-text-field
@@ -90,14 +90,14 @@
              ></v-text-field>
 
            </slot>
-         </v-list-tile-content>
-       </v-list-tile>
+         </v-list-item-content>
+       </v-list-item>
 
-       <v-list-tile v-if="prompts.description && $dayspan.supports.description">
-         <v-list-tile-avatar>
+       <v-list-item v-if="prompts.description && $dayspan.supports.description">
+         <v-list-item-avatar>
            <v-icon>subject</v-icon>
-         </v-list-tile-avatar>
-         <v-list-tile-content>
+         </v-list-item-avatar>
+         <v-list-item-content>
            <slot name="eventCreatePopoverDescription" v-bind="slotData">
 
              <v-textarea
@@ -107,14 +107,14 @@
              ></v-textarea>
 
            </slot>
-         </v-list-tile-content>
-       </v-list-tile>
+         </v-list-item-content>
+       </v-list-item>
 
-       <v-list-tile v-if="prompts.calendar && $dayspan.supports.calendar">
-         <v-list-tile-avatar>
+       <v-list-item v-if="prompts.calendar && $dayspan.supports.calendar">
+         <v-list-item-avatar>
            <v-icon>event</v-icon>
-         </v-list-tile-avatar>
-         <v-list-tile-content>
+         </v-list-item-avatar>
+         <v-list-item-content>
            <slot name="eventCreatePopoverCalendar" v-bind="slotData">
 
             <v-text-field
@@ -124,14 +124,14 @@
             ></v-text-field>
 
            </slot>
-         </v-list-tile-content>
-       </v-list-tile>
+         </v-list-item-content>
+       </v-list-item>
 
-       <v-list-tile v-if="prompts.color && $dayspan.supports.color">
-         <v-list-tile-avatar>
+       <v-list-item v-if="prompts.color && $dayspan.supports.color">
+         <v-list-item-avatar>
            <v-icon>invert_colors</v-icon>
-         </v-list-tile-avatar>
-         <v-list-tile-content>
+         </v-list-item-avatar>
+         <v-list-item-content>
            <slot name="eventCreatePopoverColor" v-bind="slotData">
 
             <v-select
@@ -140,21 +140,21 @@
               :color="details.color"
               v-model="details.color">
               <template slot="item" slot-scope="{ item }">
-                <v-list-tile-content>
+                <v-list-item-content>
                   <div class="ds-color-option" :style="{backgroundColor: item.value}" v-text="item.text"></div>
-                </v-list-tile-content>
+                </v-list-item-content>
               </template>
             </v-select>
 
            </slot>
-         </v-list-tile-content>
-       </v-list-tile>
+         </v-list-item-content>
+       </v-list-item>
 
-       <v-list-tile v-if="prompts.icon && $dayspan.supports.icon">
-         <v-list-tile-avatar>
+       <v-list-item v-if="prompts.icon && $dayspan.supports.icon">
+         <v-list-item-avatar>
            <v-icon>{{ details.icon || 'help' }}</v-icon>
-         </v-list-tile-avatar>
-         <v-list-tile-content>
+         </v-list-item-avatar>
+         <v-list-item-content>
            <slot name="eventCreatePopoverIcon" v-bind="slotData">
 
             <v-select
@@ -162,24 +162,24 @@
               :items="$dayspan.icons"
               v-model="details.icon">
               <template slot="item" slot-scope="{ item }">
-                <v-list-tile-avatar>
+                <v-list-item-avatar>
                   <v-icon>{{ item.value }}</v-icon>
-                </v-list-tile-avatar>
-                <v-list-tile-content>
+                </v-list-item-avatar>
+                <v-list-item-content>
                   {{ item.text }}
-                </v-list-tile-content>
+                </v-list-item-content>
               </template>
             </v-select>
 
            </slot>
-         </v-list-tile-content>
-       </v-list-tile>
+         </v-list-item-content>
+       </v-list-item>
 
-       <v-list-tile v-if="prompts.busy && $dayspan.supports.busy">
-         <v-list-tile-avatar>
+       <v-list-item v-if="prompts.busy && $dayspan.supports.busy">
+         <v-list-item-avatar>
            <v-icon>work</v-icon>
-         </v-list-tile-avatar>
-         <v-list-tile-content>
+         </v-list-item-avatar>
+         <v-list-item-content>
            <slot name="eventCreatePopoverBusy" v-bind="slotData">
 
              <v-select
@@ -189,8 +189,8 @@
             ></v-select>
 
            </slot>
-         </v-list-tile-content>
-       </v-list-tile>
+         </v-list-item-content>
+       </v-list-item>
 
      </v-list>
 

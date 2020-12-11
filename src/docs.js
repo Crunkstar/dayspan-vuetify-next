@@ -1,7 +1,7 @@
 import Vue from 'vue'
-import Vuetify from 'vuetify'
 import DaySpanVuetify from './plugin'
 import App from './app'
+import vuetify from './vuetify';
 
 import 'vuetify/dist/vuetify.min.css'
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
@@ -21,8 +21,6 @@ moment.lang('en')
 
 Vue.config.productionTip = false
 
-Vue.use(Vuetify);
-
 Vue.use(DaySpanVuetify,
 {
   data:
@@ -40,6 +38,7 @@ Vue.use(DaySpanVuetify,
 
 /* eslint-disable no-new */
 new Vue({
+  vuetify,
   el: '#app',
   render: h => h(App)
 })

@@ -17,13 +17,15 @@
 
   </v-navigation-drawer>
 
-  <v-toolbar app flat fixed
+  <v-app-bar app flat fixed
     class="ds-app-calendar-toolbar"
     color="white"
     :clipped-left="$vuetify.breakpoint.lgAndUp">
 
     <v-toolbar-title class="ml-0" :style="toolbarStyle">
-      <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer">
+        <v-icon>menu</v-icon>
+      </v-app-bar-nav-icon>
       <span class="hidden-sm-and-down">
 
         <slot name="title" :calendar="calendar"></slot>
@@ -34,16 +36,18 @@
     <slot name="today" v-bind="{setToday, todayDate, calendar}">
 
       <v-tooltip bottom>
-        <v-btn slot="activator"
-          class="ds-skinny-button"
-          depressed
-          :icon="$vuetify.breakpoint.smAndDown"
-          @click="setToday">
-
-          <span v-if="$vuetify.breakpoint.mdAndUp">{{ labels.today }}</span>
-          <v-icon v-else>{{ labels.todayIcon }}</v-icon>
-
-        </v-btn>
+        <template #activator="{on}">
+          <v-btn
+            class="ds-skinny-button"
+            depressed
+            :icon="$vuetify.breakpoint.smAndDown"
+            v-on="on"
+            @click="setToday"
+          >
+            <span v-if="$vuetify.breakpoint.mdAndUp">{{ labels.today }}</span>
+            <v-icon v-else>{{ labels.todayIcon }}</v-icon>
+          </v-btn>
+        </template>
         <span>{{ todayDate }}</span>
       </v-tooltip>
 
@@ -52,11 +56,15 @@
     <slot name="prev" v-bind="{prev, prevLabel, calendar}">
 
       <v-tooltip bottom>
-        <v-btn slot="activator"
-          icon depressed class="ds-light-forecolor ds-skinny-button"
-          @click="prev" >
-          <v-icon>keyboard_arrow_left</v-icon>
-        </v-btn>
+        <template #activator="{on}">
+          <v-btn
+            icon depressed class="ds-light-forecolor ds-skinny-button"
+            v-on="on"
+            @click="prev"
+          >
+            <v-icon>keyboard_arrow_left</v-icon>
+          </v-btn>
+        </template>
         <span>{{ prevLabel }}</span>
       </v-tooltip>
 
@@ -65,12 +73,16 @@
     <slot name="next" v-bind="{next, nextLabel, calendar}">
 
       <v-tooltip bottom>
-        <v-btn slot="activator"
-          icon depressed
-          class="ds-light-forecolor ds-skinny-button"
-          @click="next">
-          <v-icon>keyboard_arrow_right</v-icon>
-        </v-btn>
+        <template #activator="{on}">
+          <v-btn
+            icon depressed
+            class="ds-light-forecolor ds-skinny-button"
+            v-on="on"
+            @click="next"
+          >
+              <v-icon>keyboard_arrow_right</v-icon>
+          </v-btn>
+        </template>
         <span>{{ nextLabel }}</span>
       </v-tooltip>
 
@@ -89,19 +101,21 @@
     <slot name="view" v-bind="{currentType, types}">
 
       <v-menu>
-        <v-btn flat slot="activator">
-          {{ currentType.label }}
-          <v-icon>arrow_drop_down</v-icon>
-        </v-btn>
+        <template #activator="{on}">
+          <v-btn text v-on="on">
+            {{ currentType.label }}
+            <v-icon>arrow_drop_down</v-icon>
+          </v-btn>
+        </template>
         <v-list>
-          <v-list-tile v-for="type in types"
+          <v-list-item v-for="type in types"
             :key="type.id"
             @click="currentType = type">
-            <v-list-tile-content>
-              <v-list-tile-title>{{ type.label }}</v-list-tile-title>
-            </v-list-tile-content>
-            <v-list-tile-action>{{ type.shortcut }}</v-list-tile-action>
-          </v-list-tile>
+            <v-list-item-content>
+              <v-list-item-title>{{ type.label }}</v-list-item-title>
+            </v-list-item-content>
+            <v-list-item-action>{{ type.shortcut }}</v-list-item-action>
+          </v-list-item>
         </v-list>
       </v-menu>
 
@@ -109,8 +123,8 @@
 
     <slot name="menuRight"></slot>
 
-  </v-toolbar>
-  <v-content class="ds-expand">
+  </v-app-bar>
+  <v-main class="ds-expand">
     <v-container fluid fill-height class="ds-calendar-container">
 
       <ds-gestures
@@ -179,9 +193,9 @@
           :fullscreen="$dayspan.fullscreenDialogs">
           <v-list>
             <template v-for="option in options">
-              <v-list-tile :key="option.text" @click="chooseOption( option )">
+              <v-list-item :key="option.text" @click="chooseOption( option )">
                 {{ option.text }}
-              </v-list-tile>
+              </v-list-item>
             </template>
           </v-list>
         </v-dialog>
@@ -196,11 +210,11 @@
           <v-card>
             <v-card-title>{{ promptQuestion }}</v-card-title>
             <v-card-actions>
-              <v-btn color="primary" flat @click="choosePrompt( true )">
+              <v-btn color="primary" text @click="choosePrompt( true )">
                 {{ labels.promptConfirm }}
               </v-btn>
               <v-spacer></v-spacer>
-              <v-btn color="secondary" flat @click="choosePrompt( false )">
+              <v-btn color="secondary" text @click="choosePrompt( false )">
                 {{ labels.promptCancel }}
               </v-btn>
             </v-card-actions>
@@ -227,7 +241,7 @@
       <slot name="containerInside" v-bind="{events, calendar}"></slot>
 
     </v-container>
-  </v-content>
+  </v-main>
 </div>
 </template>
 

@@ -35,7 +35,7 @@ A component which takes an [event occurrence](dayspan.md#calendarevent) and [sch
 
 ## Slots
 - `default`: The component which triggers the actions menu.
-- `scheduleActionsAdditional` {schedule, calendarEvent, calendar}: An additional set of [v-list-tile](vuetify.md#vlist)s to add to the menu.
+- `scheduleActionsAdditional` {schedule, calendarEvent, calendar}: An additional set of [v-list-item](vuetify.md#vlist)s to add to the menu.
 
 ## Methods
 - `remove` *void*: Removes the event from the calendar.

@@ -1,49 +1,50 @@
 <template>
+  <div class="ds-calendar-event-menu">
+    <v-menu
+      :content-class="contentClass"
+      :disabled="!hasPopover"
+      v-model="menu"
+      v-bind="popoverProps">
 
-  <v-menu
-    class="ds-calendar-event-menu"
-    :content-class="contentClass"
-    :disabled="!hasPopover"
-    v-model="menu"
-    v-bind="popoverProps">
+      <template #activator="{on}">
+        <div class="ds-calendar-event"
+          v-on="on"
+          :style="style"
+          @click.stop="editCheck"
+          @mouseenter="mouseEnterEvent"
+          @mouseleave="mouseLeaveEvent"
+          @mousedown="mouseDownEvent"
+          @mouseup="mouseUpEvent">
 
-    <div class="ds-calendar-event"
-      slot="activator"
-      :style="style"
-      @click.stop="editCheck"
-      @mouseenter="mouseEnterEvent"
-      @mouseleave="mouseLeaveEvent"
-      @mousedown="mouseDownEvent"
-      @mouseup="mouseUpEvent">
+          <span v-if="showName">
+            <slot name="eventTitle" v-bind="{calendarEvent, hasPrefix, getPrefix, details}">
 
-      <span v-if="showName">
-        <slot name="eventTitle" v-bind="{calendarEvent, hasPrefix, getPrefix, details}">
+              <v-icon class="ds-ev-icon"
+                v-if="hasIcon"
+                size="14"
+                :style="{color: details.forecolor}">
+                {{ details.icon }}
+              </v-icon>
+              <span v-if="hasPrefix">
+                {{ getPrefix }}
+              </span>
+              <strong class="ds-ev-title">{{ details.title }}</strong>
+              <span class="ds-ev-description">{{ details.description }}</span>
 
-          <v-icon class="ds-ev-icon"
-            v-if="hasIcon"
-            size="14"
-            :style="{color: details.forecolor}">
-            {{ details.icon }}
-          </v-icon>
-          <span v-if="hasPrefix">
-            {{ getPrefix }}
+            </slot>
           </span>
-          <strong class="ds-ev-title">{{ details.title }}</strong>
-          <span class="ds-ev-description">{{ details.description }}</span>
 
-        </slot>
-      </span>
+          <span v-else>
+            <slot name="eventEmpty" v-bind="{calendarEvent, details}">&nbsp;</slot>
+          </span>
 
-      <span v-else>
-        <slot name="eventEmpty" v-bind="{calendarEvent, details}">&nbsp;</slot>
-      </span>
+        </div>
+      </template>
 
-    </div>
+      <slot name="eventPopover" v-bind="{calendarEvent, calendar, edit, details, close}"></slot>
 
-    <slot name="eventPopover" v-bind="{calendarEvent, calendar, edit, details, close}"></slot>
-
-  </v-menu>
-
+    </v-menu>
+  </div>
 </template>
 
 <script>

@@ -302,7 +302,6 @@ export default {
   dsEventDialog: {
     dialogProps: {
       persistent: true,
-      lazy: true,
       maxWidth: '800px'
     }
   },
@@ -460,7 +459,6 @@ export default {
     dialogProps: {
       maxWidth: '600px',
       persistent: true,
-      lazy: true
     },
     labels: {
       save:     LOCALE_ENTRY,

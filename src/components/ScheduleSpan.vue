@@ -8,11 +8,13 @@
       :disabled="isReadOnly"
       v-model="startMenu">
 
-      <v-btn depressed
-        class="ds-button-tall ma-0 mb-2"
-        slot="activator">
-        {{ startText }}
-      </v-btn>
+      <template #activator="{on}">
+        <v-btn depressed
+          class="ds-button-tall ma-0 mb-2"
+          v-on="on">
+          {{ startText }}
+        </v-btn>
+      </template>
 
       <div class="ds-span-menu">
 
@@ -21,7 +23,7 @@
           :span="startSpan"
           @picked="setStart"></ds-day-picker>
 
-        <v-btn block flat
+        <v-btn block text
           class="mb-0"
           v-if="hasStart"
           @click="setStart( null )">
@@ -40,11 +42,13 @@
       :disabled="isReadOnly"
       v-model="endMenu">
 
-      <v-btn depressed
-        class="ds-button-tall ma-0 mb-2"
-        slot="activator">
-        {{ endText }}
-      </v-btn>
+      <template #activator="{on}">
+        <v-btn depressed
+          class="ds-button-tall ma-0 mb-2"
+          v-on="on">
+          {{ endText }}
+        </v-btn>
+      </template>
 
       <div class="ds-span-menu">
 
@@ -53,7 +57,7 @@
           :span="endSpan"
           @picked="setEnd"></ds-day-picker>
 
-        <v-btn block flat
+        <v-btn block text
           class="mb-0"
           v-if="hasEnd"
           @click="setEnd( null )">

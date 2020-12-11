@@ -53,7 +53,7 @@
         <v-container fluid>
           <v-layout wrap align-center>
             <v-flex xs12>
-              <v-checkbox box
+              <v-checkbox
                 label="Read Only?"
                 v-model="readOnly"
               ></v-checkbox>

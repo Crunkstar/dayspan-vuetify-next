@@ -11,9 +11,11 @@
         <slot name="scheduleCancel" v-bind="{cancel, labels}">
 
           <v-tooltip bottom>
-            <v-btn slot="activator" icon class="ds-button" @click="cancel">
-              <v-icon dark>clear</v-icon>
-            </v-btn>
+            <template #activator="{on}">
+              <v-btn icon class="ds-button" @click="cancel" v-on="on">
+                <v-icon dark>clear</v-icon>
+              </v-btn>
+            </template>
             <span v-html="labels.cancel"></span>
           </v-tooltip>
 
@@ -163,9 +165,9 @@
                     :disabled="isReadOnly"
                     v-model="details.color">
                     <template slot="item" slot-scope="{ item }">
-                      <v-list-tile-content>
+                      <v-list-item-content>
                         <div class="ds-color-option" :style="{backgroundColor: item.value}" v-text="item.text"></div>
-                      </v-list-tile-content>
+                      </v-list-item-content>
                     </template>
                   </v-select>
                 </slot>
@@ -179,12 +181,12 @@
                     :disabled="isReadOnly"
                     v-model="details.icon">
                     <template slot="item" slot-scope="{ item }">
-                      <v-list-tile-avatar>
+                      <v-list-item-avatar>
                         <v-icon>{{ item.value }}</v-icon>
-                      </v-list-tile-avatar>
-                      <v-list-tile-content>
+                      </v-list-item-avatar>
+                      <v-list-item-content>
                         {{ item.text }}
-                      </v-list-tile-content>
+                      </v-list-item-content>
                     </template>
                   </v-select>
                 </slot>
@@ -207,7 +209,7 @@
           </v-tab-item>
 
           <!-- Forecast -->
-          <v-tab-item value="forecast" lazy v-if="showForecast">
+          <v-tab-item value="forecast" v-if="showForecast">
             <v-card flat>
               <v-card-text>
                 <slot name="eventForecast" v-bind="slotData">
@@ -224,7 +226,7 @@
           </v-tab-item>
 
           <!-- Exclusions -->
-          <v-tab-item value="exclusions" lazy v-if="showExclusions">
+          <v-tab-item value="exclusions" v-if="showExclusions">
             <v-card flat>
               <v-card-text>
                 <slot name="eventExclusions" v-bind="slotData">
@@ -241,7 +243,7 @@
           </v-tab-item>
 
           <!-- Inclusions -->
-          <v-tab-item value="inclusions" lazy v-if="showInclusions">
+          <v-tab-item value="inclusions" v-if="showInclusions">
             <v-card flat>
               <v-card-text>
                 <slot name="eventInclusions" v-bind="slotData">
@@ -258,7 +260,7 @@
           </v-tab-item>
 
           <!-- Cancelled -->
-          <v-tab-item value="cancelled" lazy v-if="showCancels">
+          <v-tab-item value="cancelled" v-if="showCancels">
             <v-card flat>
               <v-card-text>
                 <slot name="eventCancels" v-bind="slotData">

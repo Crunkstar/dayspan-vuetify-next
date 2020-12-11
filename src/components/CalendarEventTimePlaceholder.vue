@@ -7,13 +7,15 @@
     v-model="menu"
     v-bind="popoverProps">
 
-    <ds-calendar-event-time
-      slot="activator"
-      v-bind="{$scopedSlots}"
-      :is-placeholder-with-day="day"
-      :calendar-event="placeholder"
-      :calendar="calendar"
-    ></ds-calendar-event-time>
+    <template #activator="{on}">
+      <ds-calendar-event-time
+        v-on="on"
+        v-bind="{$scopedSlots}"
+        :is-placeholder-with-day="day"
+        :calendar-event="placeholder"
+        :calendar="calendar"
+      ></ds-calendar-event-time>
+    </template>
 
     <slot name="eventCreatePopover" v-bind="{placeholder, calendar, day, close}"></slot>
 
