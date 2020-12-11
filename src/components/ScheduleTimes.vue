@@ -117,13 +117,13 @@ export default {
       var singular = this.schedule.duration === 1;
 
       var duringDay = [
-        { text: singular ? this.labels.minute : this.labels.minutes, value: 'minutes' },
-        { text: singular ? this.labels.hour : this.labels.hours, value: 'hours' }
+        { text: singular ? this.labels.minute : this.labels.minutes, value: 'minute' },
+        { text: singular ? this.labels.hour : this.labels.hours, value: 'hour' }
       ];
       var allDay = [
-        { text: singular ? this.labels.day : this.labels.days, value: 'days' },
-        { text: singular ? this.labels.week : this.labels.weeks, value: 'weeks' },
-        { text: singular ? this.labels.month : this.labels.months, value: 'months' }
+        { text: singular ? this.labels.day : this.labels.days, value: 'day' },
+        { text: singular ? this.labels.week : this.labels.weeks, value: 'week' },
+        { text: singular ? this.labels.month : this.labels.months, value: 'month' }
       ];
 
       return this.allDay ? allDay : duringDay.concat( allDay );

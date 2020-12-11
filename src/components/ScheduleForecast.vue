@@ -22,7 +22,7 @@
       <ds-calendar-event-chip
         :key="time.time"
         :day="aroundDay"
-        :time="time"
+        :time="time[1]"
         :can-exclude="canExclude && !isReadOnly"
         @exclude="exclude"
       ></ds-calendar-event-chip>
@@ -132,7 +132,7 @@ export default {
         .map(function(spanDayId) {
           return spanDayId[1];
         })
-        .list()
+        .array()
       ;
     },
 

@@ -66,7 +66,7 @@ export default {
   {
     identifiers()
     {
-      return this.modifier.identifiers(x => x).list();
+      return this.modifier.identifiers(x => x).array();
     },
 
     isReadOnly()

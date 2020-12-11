@@ -396,7 +396,7 @@ export default {
       let id = time.timeIdentifier;
       let event = this.createEvent( details, schedule, true );
       let span = DaySpan.point( time );
-      let day = time.start();
+      let day = time.startOf('day');
 
       return new CalendarEvent( id, event, span, day );
     },

@@ -366,7 +366,7 @@ export default {
 
         if (!ev.handled && ev.calendarEvent)
         {
-          ev.calendarEvent.schedule.start = ev.calendarEvent.day.start();
+          ev.calendarEvent.schedule.start = ev.calendarEvent.day.startOf('day');
           ev.refresh && ev.calendar && ev.calendar.refreshEvents();
           ev.handled = true;
         }
@@ -387,7 +387,7 @@ export default {
 
         if (!ev.handled && ev.calendarEvent)
         {
-          ev.calendarEvent.schedule.end = ev.calendarEvent.day.end();
+          ev.calendarEvent.schedule.end = ev.calendarEvent.day.endOf('day');
           ev.refresh && ev.calendar && ev.calendar.refreshEvents();
           ev.handled = true;
         }

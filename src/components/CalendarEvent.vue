@@ -108,7 +108,7 @@ export default {
 
     sameDayEvents()
     {
-      return this.calendarEvent.event.schedule.iterateSpans(this.calendarEvent.day, true).list();
+      return this.calendarEvent.event.schedule.iterateSpans(this.calendarEvent.day, true).array();
     },
 
     hasPrefix()
