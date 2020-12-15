@@ -295,7 +295,7 @@ export default {
 
     isReadOnly()
     {
-      return this.readOnly || this.$dayspan.readOnly || this.details.readonly;
+      return this.readOnly || this.$dayspan.readOnly || this.details.readonly || this.details.read_only===true;
     }
   },
 

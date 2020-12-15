@@ -1,6 +1,6 @@
 {
   "name": "dayspan-vuetify-next",
-  "version": "0.4.3",
+  "version": "0.4.4",
   "description": "A collection of components for Schedules and Calendars in DaySpan using Vuetify (forked by Crunkstar)",
   "author": "Crunkstar <admin@0x657865.net>",
   "repository": {

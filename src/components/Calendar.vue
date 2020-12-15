@@ -360,7 +360,7 @@ export default {
 
     mouseDownEvent(mouseEvent)
     {
-      if (this.canMove && mouseEvent.left)
+      if (this.canMove && mouseEvent.left && mouseEvent.details.read_only !== true)
       {
         this.readyToMove = true;
         this.movingEvent = mouseEvent;
