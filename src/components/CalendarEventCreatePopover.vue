@@ -64,6 +64,8 @@
 
      <v-list>
 
+     <slot name="eventCreatePopoverListTop" v-bind="slotData"></slot>
+
        <v-list-item>
          <v-list-item-avatar>
            <v-icon>access_time</v-icon>
@@ -191,6 +193,8 @@
            </slot>
          </v-list-item-content>
        </v-list-item>
+
+       <slot name="eventCreatePopoverListBottom" v-bind="slotData"></slot>
 
      </v-list>
 

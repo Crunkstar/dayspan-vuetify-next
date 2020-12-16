@@ -68,6 +68,8 @@
 
      <v-list dense>
 
+       <slot name="eventPopoverListTop" v-bind="slotData"></slot>
+
        <v-list-item>
          <v-list-item-avatar>
            <v-icon>access_time</v-icon>
@@ -143,6 +145,7 @@
          </v-list-item-content>
        </v-list-item>
 
+       <slot name="eventPopoverListBottom" v-bind="slotData"></slot>
      </v-list>
 
      <slot name="eventPopoverBodyBottom" v-bind="slotData"></slot>
