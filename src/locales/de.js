@@ -77,7 +77,7 @@ export default {
         { label: '4 Tage' }
       ],
       formats: {
-        today: 'd. MMMM y',
+        today: 'dddd [der] d. MMMM',
         xs: 'MMM'
       },
       labels: {
@@ -97,7 +97,7 @@ export default {
       formats: {
         firstLine:  'ddd',
         secondLine: 'd. MMM',
-        start:      'd. MMMM y',
+        start:      'dddd [der] d. MMMM',
         time:       'hh:mm'
       },
       labels: {
@@ -120,13 +120,13 @@ export default {
     },
     dsCalendarEventChip: {
       formats: {
-        fullDay:          'EEEE, d. MMMM y',
-        timed:            'EEEE, d. MMMM y'
+        fullDay:          'ddd, d. MMMM y',
+        timed:            'ddd, d. MMMM y'
       }
     },
     dsCalendarEventPopover: {
       formats: {
-        start:    'd. MMMM y',
+        start:    'dddd [der] d. MMMM',
         time:     'hh:mm'
       },
       labels: {
@@ -149,7 +149,7 @@ export default {
     },
     dsCalendarEventCreatePopover: {
       formats: {
-        start:    'd. MMMM y',
+        start:    'dddd [der] d. MMMM',
         time:     'hh:mm'
       },
       labels: {
@@ -323,8 +323,8 @@ export default {
         endless:    'Ende'
       },
       formats: {
-        start:      'd. MMMM y',
-        end:        'd. MMMM y'
+        start:      'dddd [der] d. MMMM',
+        end:        'dddd [der] d. MMMM'
       }
     },
 
@@ -373,7 +373,7 @@ export default {
     },
 
     dsWeeksView: {
-      weekdays: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+      weekdays: ['So.', 'Mo.', 'Di.', 'Mi.', 'Do.', 'Fr.', 'Sa.']
     },
 
     dsDaysView: {
